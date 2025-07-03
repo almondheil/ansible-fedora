@@ -1,0 +1,8 @@
+---
+- name: Test
+  ansible.builtin.debug:
+    msg: 'hello! it works'
+
+- name: Print host var
+  ansible.builtin.debug:
+    var: localhost_var
