@@ -1,0 +1,7 @@
+packages:
+  install:
+    system: []
+    flatpak: []
+  remove:
+    system: []
+    flatpak: []

@@ -1,0 +1,45 @@
+---
+- name: Debug package installs/removes
+  ansible.builtin.debug:
+    var: packages
+  tags: [never, debug]
+
+- name: Install flatpak
+  become: true
+  ansible.builtin.package:
+    name: flatpak
+    state: present
+
+- name: Add flathub as flatpak remote (always runs)
+  ansible.builtin.command:
+    cmd: flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: Install system packages
+  become: true
+  ansible.builtin.package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - '{{ packages.install.system }}'
+
+- name: Remove system packages
+  become: true
+  ansible.builtin.package:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - '{{ packages.remove.system }}'
+
+- name: Install flatpak packages
+  community.general.flatpak:
+    name: '{{ item }}'
+    state: present 
+  with_items:
+    - '{{ packages.install.flatpak }}'
+
+- name: Remove flatpak packages
+  community.general.flatpak:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - '{{ packages.remove.flatpak }}'

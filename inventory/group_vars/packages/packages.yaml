@@ -1,0 +1,15 @@
+packages:
+  install:
+    system:
+      - gimp
+      - inkscape
+    flatpak:
+      - org.mozilla.firefox
+      - io.github.ungoogled_software.ungoogled_chromium
+      - org.signal.Signal
+      - com.discordapp.Discord
+  remove: 
+    system:
+      - firefox
+    flatpak:
+      - com.rtosta.zapzap

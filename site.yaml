@@ -2,4 +2,4 @@
 - hosts: localhost
   connection: local
   roles:
-    - { role: test, tags: ['test'] }
+    - { role: packages, tags: ['packages'] }
