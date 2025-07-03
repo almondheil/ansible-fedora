@@ -6,3 +6,7 @@
 - name: Print host var
   ansible.builtin.debug:
     var: localhost_var
+
+- name: Print group var
+  ansible.builtin.debug:
+    var: example_group_var
